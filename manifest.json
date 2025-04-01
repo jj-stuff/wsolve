@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "Wordle Auto-Player",
+  "description": "Automatically plays Wordle puzzles using an optimized algorithm",
+  "version": "1.0",
+  "action": {
+    "default_icon": {
+      "16": "images/icon16.png",
+      "48": "images/icon48.png",
+      "128": "images/icon128.png"
+    }
+  },
+  "permissions": ["storage", "activeTab", "scripting"],
+  "host_permissions": ["https://www.nytimes.com/games/wordle/*", "https://wordly.org/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.nytimes.com/games/wordle/*", "https://wordly.org/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
